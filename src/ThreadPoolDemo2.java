@@ -15,13 +15,19 @@ public class ThreadPoolDemo2 {
         }
     }
 
+    public class myNeed{
+        public void me(){
+            System.out.println("good");
+        }
+    }
+
     public static void main(String args[]){
         ThreadPoolDemo2 t = new ThreadPoolDemo2();
-        myTask task = t.new myTask();
+        myNeed task = t.new myNeed();
         ExecutorService es = Executors.newCachedThreadPool();
         for(int i=0;i<10;i++){
-            es.submit(()->task);//问题出现在这里！
-            es.execute(task);
+            es.submit(()->task.me());
+//            es.execute(task);
         }
     }
 }
